@@ -1,0 +1,4 @@
+uuid
+opencv-python
+Pillow
+ultralytics
