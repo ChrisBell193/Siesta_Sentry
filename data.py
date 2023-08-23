@@ -3,6 +3,9 @@ import os
 import time
 import cv2
 from PIL import Image
+import math
+from typing import Tuple, Union
+import numpy as np
 
 
 def extract_equally_spaced_frames(video_path, output_folder, status_id, person_id, num_frames=21):
@@ -85,3 +88,110 @@ def resize_and_fill(input_path, output_path, size=640, fill_color=(0, 0, 0)):
     new_image.paste(resized_image, paste_position)
     # Save the final image. Quality=100 because they are already compressed images from taking screenshots.
     new_image.save(output_path, format="JPEG", quality=100)
+
+
+def crop_to_square(image_path,output_path, target_size=640):
+    """
+    Crop the center part of an image to a square and resize it to the target size.
+
+    Args:
+        image_path (str): Path to the input image file.
+        output_path (str): Path to save the cropped and resized image.
+        target_size (int, optional): The size (width and height) of the output square image.
+                                     Default is 640 pixels.
+    Save cropped image to output path
+    """
+    # Open the image
+    image = Image.open(image_path)
+
+    # Get the original width and height of the image
+    width, height = image.size
+
+    # Calculate the cropping coordinates to keep the center part
+    new_width = new_height = min(width, height)
+    left = (width - new_width) // 2
+    top = (height - new_height) // 2
+    right = left + new_width
+    bottom = top + new_height
+
+    # Crop the image to the calculated coordinates
+    cropped_image = image.crop((left, top, right, bottom))
+    # Resize the cropped image to the target size
+    resized_image = cropped_image.resize((target_size, target_size), Image.BILINEAR)
+    resized_image.save(output_path, format="JPEG", quality=100)
+
+def _normalized_to_pixel_coordinates(
+    normalized_x: float, normalized_y: float, image_width: int,
+    image_height: int) -> Union[None, Tuple[int, int]]:
+    """Converts normalized value pair to pixel coordinates."""
+
+    # Checks if the float value is between 0 and 1.
+    def is_valid_normalized_value(value: float) -> bool:
+        return (value > 0 or math.isclose(0, value)) and (value < 1 or
+                                                        math.isclose(1, value))
+
+    # Check if both normalized_x and normalized_y are within valid range (0 to 1)
+    # If one or both values are outside the valid range, return None
+    if not (is_valid_normalized_value(normalized_x) and
+            is_valid_normalized_value(normalized_y)):
+    # TODO: Draw coordinates even if it's outside of the image bounds.
+        return None
+
+    # Convert normalized values to pixel coordinates
+    x_px = min(math.floor(normalized_x * image_width), image_width - 1)
+    y_px = min(math.floor(normalized_y * image_height), image_height - 1)
+    return x_px, y_px
+
+def visualize(
+    image,
+    detection_result,
+    MARGIN = 10,  # pixels
+    ROW_SIZE = 10 , # pixels
+    FONT_SIZE = 1,
+    FONT_THICKNESS = 1,
+    TEXT_COLOR = (255, 0, 0)  # red
+) -> np.ndarray:
+    """
+    Draws bounding boxes and keypoints on the input image and return it.
+    Args:
+    image: The input RGB image.
+    detection_result: The list of all "Detection" entities to be visualize.
+    Returns:
+    Image with bounding boxes.
+    """
+    # Create a copy of the input image to draw annotations on
+    annotated_image = image.copy()
+    # Get the height, width, and number of color channels of the image
+    height, width, _ = image.shape
+
+    # Loop through each detection in the result
+    for detection in detection_result.detections:
+        # Draw bounding_box
+        bbox = detection.bounding_box
+        start_point = bbox.origin_x, bbox.origin_y
+        end_point = bbox.origin_x + bbox.width, bbox.origin_y + bbox.height
+        # Draw a rectangle around the detected object
+        cv2.rectangle(annotated_image, start_point, end_point, TEXT_COLOR, 3)
+
+        # Draw keypoints associated with the detection
+        for keypoint in detection.keypoints:
+            # Convert normalized keypoint coordinates to pixel coordinates
+            keypoint_px = _normalized_to_pixel_coordinates(keypoint.x, keypoint.y,
+                                                            width, height)
+            color, thickness, radius = (0, 255, 0), 2, 2
+            # Draw a circle at the keypoint location
+            cv2.circle(annotated_image, keypoint_px, thickness, color, radius)
+
+    # Get the category information for the detection
+    category = detection.categories[0]
+    category_name = category.category_name
+    category_name = '' if category_name is None else category_name
+    probability = round(category.score, 2)
+    result_text = category_name + ' (' + str(probability) + ')'
+    text_location = (MARGIN + bbox.origin_x,
+                        MARGIN + ROW_SIZE + bbox.origin_y)
+    # Draw the category label and probability score
+    cv2.putText(annotated_image, result_text, text_location, cv2.FONT_HERSHEY_PLAIN,
+                FONT_SIZE, TEXT_COLOR, FONT_THICKNESS)
+
+    return annotated_image
