@@ -2,6 +2,7 @@ import os
 import numpy as np
 
 ##################  CONSTANTS  #####################
+PARENT_DIRECTORY = os.path.join(os.path.expanduser('~'), "code", "ChrisBell193", "Siesta_Sentry")
 DATA_DIRECTORY = os.path.join(os.path.expanduser('~'), "code", "ChrisBell193", "Siesta_Sentry","raw_data")
 VIDEO_DIRECTORY = os.path.join(DATA_DIRECTORY, 'video')
 
