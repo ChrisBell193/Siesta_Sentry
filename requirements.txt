@@ -3,3 +3,4 @@ opencv-python
 Pillow
 ultralytics==8.0.23
 mediapipe
+pygame
