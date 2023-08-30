@@ -1,4 +1,5 @@
 raw_data/
 lebalImg/
 notebook/
-all_runs/
+runs/
+.DS_Store
