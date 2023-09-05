@@ -23,4 +23,4 @@ University of Texas at Arlington [Drowsiness Dataset](https://www.kaggle.com/dat
 - [Chris Bell](https://www.linkedin.com/in/chris-bell-1263171b3/)
 - [Melody Nguyen](https://www.linkedin.com/in/melody-duong/)
 - [Giovanni Jolard](https://www.linkedin.com/in/giovanni-jolard-3b9b721b7/)
-- Joshua Higgins
+- [Joshua Higgins](https://www.linkedin.com/in/joshua-higgins-29ab4028b/)
