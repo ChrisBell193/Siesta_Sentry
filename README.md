@@ -4,7 +4,7 @@ Drowsiness detection model using YOLOv8 and Mediapipe
 
 ![Screenshot 2023-09-05 at 11 49 26](https://github.com/ChrisBell193/Siesta_Sentry/assets/138370119/60a12657-9987-4cda-94ae-8282a87e221c)
 <br>
-App home: https://app-hfbcbzf2pqf4jzcebppldg.streamlit.app/
+App home: https://siesta-sentry.streamlit.app/
 
 
 ## Getting Started
