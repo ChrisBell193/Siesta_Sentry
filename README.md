@@ -1,6 +1,6 @@
 # 📚 Siesta Sentry
 
-Siesta Sentry is an innovative project designed to address moments of drowsiness and danger, both on the road and in the classroom. Have you ever found yourself struggling to stay awake while driving at night or during an online lecture? Our product aims to automatically detect these critical moments and provide timely alerts, ensuring your safety and attentiveness. Join us on this journey to explore the potential of Siesta Sentry and revolutionize the way we stay awake and alert.
+Have you ever been in a situation where you're driving at night, the darkness outside, and you start to feel that drowsiness creeping in? Your eyelids become heavy, and you find yourself nodding off, a potentially perilous situation when behind the wheel. Or perhaps, in today's world of online classes, you've struggled to stay awake during a lecture, fearing you might miss crucial information. What if there was a product that could automatically detect these moments of drowsiness or danger and provide a wake-up call? That's precisely what Siesta Sentry aims to achieve.
 
 ![Screenshot 2023-09-05 at 11 49 26](https://github.com/ChrisBell193/Siesta_Sentry/assets/138370119/60a12657-9987-4cda-94ae-8282a87e221c)
 <br>
