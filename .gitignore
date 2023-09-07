@@ -4,7 +4,7 @@ notebook/
 runs/
 .DS_Store
 yolov8-streamlit-detection-tracking/
-app/
+app_streamlit/
 notebook_ignore/
 Notes for presentation.md
 alarm_sound/
