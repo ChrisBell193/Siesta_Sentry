@@ -7,9 +7,7 @@ PARENT_DIRECTORY = os.path.join(os.path.expanduser('~'), "code", "ChrisBell193",
 model = YOLO(
             os.path.join(PARENT_DIRECTORY,
                          'runs',
-                        'BEST_runs_10th_tuned_with_pics_of_8',
-                        'detect',
-                        'train5',
+                        'should be best fine tuned',
                         'weights',
                         'best.pt'
                         )
