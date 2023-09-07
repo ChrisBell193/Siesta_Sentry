@@ -4,3 +4,16 @@ Pillow
 ultralytics==8.0.23
 mediapipe
 pygame
+
+streamlit
+streamlit_webrtc
+torch
+
+torchvision
+opencv-python
+matplotlib
+PyYAML
+requests
+scipy
+tqdm
+seaborn

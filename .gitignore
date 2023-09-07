@@ -3,3 +3,10 @@ lebalImg/
 notebook/
 runs/
 .DS_Store
+yolov8-streamlit-detection-tracking/
+app/
+notebook_ignore/
+Notes for presentation.md
+alarm_sound/
+logo_streamlit/
+best.pt
