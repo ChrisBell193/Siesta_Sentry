@@ -1,4 +1,11 @@
 raw_data/
+lebalImg/
 notebook/
-labelImg/
-all_runs/
+runs/
+.DS_Store
+alarm_sound/
+app/
+best.pt
+logo_streamlit/
+notebook_ignore/
+labelImg_ignore

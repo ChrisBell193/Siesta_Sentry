@@ -26,10 +26,12 @@ def image_preprocess():
     print(f'Image processing...')
     train_images_path = os.path.join(DATA_DIRECTORY,
                                      f'raw_image_{NUMBER_OF_FRAMES}',
-                                     'train')
+                                     'train'
+                                     )
     train_images_processed_path = os.path.join(DATA_DIRECTORY,
                                                f'processed_images_{NUMBER_OF_FRAMES}',
-                                               'train')
+                                               'train',
+                                               'images')
     if not os.path.exist(train_images_processed_path):
         os.makedir(train_images_processed_path)
 
@@ -113,7 +115,8 @@ def image_preprocess():
                                      'val')
     val_images_processed_path = os.path.join(DATA_DIRECTORY,
                                                f'processed_images_{NUMBER_OF_FRAMES}',
-                                               'val')
+                                               'val',
+                                               'images')
     if not os.path.exist(val_images_processed_path):
         os.makedir(val_images_processed_path)
 
@@ -123,3 +126,38 @@ def image_preprocess():
                     fill_color=(0, 0, 0))
     print('Finish processing for validation set')
     print('Finish image preprocessing')
+
+def image_annotate():
+    train_images_path = os.path.join(DATA_DIRECTORY,
+                                f'processed_images_{NUMBER_OF_FRAMES}',
+                                'train',
+                                'images'
+                                )
+    train_labels_path = os.path.join(DATA_DIRECTORY,
+                                f'processed_images_{NUMBER_OF_FRAMES}',
+                                'train',
+                                'labels'
+                                )
+
+    val_images_path = os.path.join(DATA_DIRECTORY,
+                                f'processed_images_{NUMBER_OF_FRAMES}',
+                                'val',
+                                'images'
+                                )
+    val_labels_path = os.path.join(DATA_DIRECTORY,
+                                f'processed_images_{NUMBER_OF_FRAMES}',
+                                'val',
+                                'labels'
+                                )
+
+    #STEP 1: Annotate train folder
+    print('Saving label files for train set')
+    annotate_and_save_labels_file(input_directory= train_images_path,
+                                  output_labels_directory= train_labels_path)
+
+    #STEP 1: Annotate validation folder
+    print('Saving label files for val set')
+    annotate_and_save_labels_file(input_directory= val_images_path,
+                                  output_labels_directory= val_labels_path)
+
+    print('Finish annotating pictures, label files are saved')
