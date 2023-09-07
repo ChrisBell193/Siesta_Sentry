@@ -4,7 +4,7 @@ Have you ever been in a situation where you're driving at night, the darkness ou
 
 ![Screenshot 2023-09-05 at 11 49 26](https://github.com/ChrisBell193/Siesta_Sentry/assets/138370119/60a12657-9987-4cda-94ae-8282a87e221c)
 <br>
-App home: https://siesta-sentry.streamlit.app/
+App home: https://siestasentry.streamlit.app/
 
 
 ## Getting Started
