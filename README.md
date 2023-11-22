@@ -1,10 +1,27 @@
 # 📚 Siesta Sentry
 
+### Introduction
 Have you ever been in a situation where you're driving at night, the darkness outside, and you start to feel that drowsiness creeping in? Your eyelids become heavy, and you find yourself nodding off, a potentially perilous situation when behind the wheel. Or perhaps, in today's world of online classes, you've struggled to stay awake during a lecture, fearing you might miss crucial information. What if there was a product that could automatically detect these moments of drowsiness or danger and provide a wake-up call? That's precisely what Siesta Sentry aims to achieve.
 
 ![Screenshot 2023-09-05 at 11 49 26](https://github.com/ChrisBell193/Siesta_Sentry/assets/138370119/60a12657-9987-4cda-94ae-8282a87e221c)
 <br>
 App home: https://siestasentry.streamlit.app/
+
+
+### Description
+#### Dataset
+Utilized the Drowsiness Dataset from the University of Texas at Arlington, consisting of videos where volunteers recorded themselves in alert and drowsy states.
+#### Data Preprocessing
+Extracted frames from videos using OpenCV, ensuring uniform sizing and handling face proximity to the camera.
+Augmented the dataset through techniques such as zooming and tilting.
+#### Face Detection
+Leveraged Mediapipe to locate faces in each frame, converting bounding box coordinates to x-center and y-center for model compatibility.
+#### Model Training
+Developed a YOLOv8 model using frame images, corresponding class labels, and bounding box values.
+Tuned hyperparameters and upgraded to a larger YOLO version, achieving high recall and accuracy.
+#### Deployment
+Deployed the trained model to Streamlit Cloud, overcoming video capture challenges on the platform.
+Siesta Sentry can now effectively detect drowsy faces in a live video feed.
 
 
 ## Getting Started
