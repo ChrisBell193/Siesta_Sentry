@@ -1,7 +1,11 @@
 from ultralytics import YOLO
 
-# Load a model
-model = YOLO("yolov8n.yaml")  # build a new model from scratch
 
-# Use the model
-results = model.train(data="config.yaml", epochs=100, patience = 20, batch = 8)  # train the model
+def train(model_type: str, config_file: str, epochs, patience, batch_size):
+    # Load a model
+    print('Loading the base model...')
+    model = YOLO(model_type)
+
+    # Use the model
+    results = model.train(data=config_file, epochs=epochs, patience = patience, batch = batch_size)
+    print(f'Completed training {model_type}')

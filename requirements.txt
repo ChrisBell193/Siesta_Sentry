@@ -1,7 +1,7 @@
 uuid
 opencv-python
 Pillow
-ultralytics==8.0.23
+ultralytics
 mediapipe
 pygame
 

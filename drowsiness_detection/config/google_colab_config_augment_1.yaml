@@ -1,7 +1,7 @@
 
-path: '/content/gdrive/My Drive/Siesta_Sentry' # dataset root dir
-train: images/train  # train images (relative to 'path')
-val: images/val  # val images (relative to 'path')
+path: 'data' # dataset root dir
+train: train/images  # train images (relative to 'path')
+val: val/images  # val images (relative to 'path')
 
 # Classes
 names:

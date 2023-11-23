@@ -13,3 +13,5 @@ best.pt
 logo_streamlit/
 notebook_ignore/
 labelImg_ignore
+*.egg-info/
+Siesta_Sentry/

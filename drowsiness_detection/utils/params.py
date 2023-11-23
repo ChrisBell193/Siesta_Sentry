@@ -2,8 +2,8 @@ import os
 import numpy as np
 
 ##################  CONSTANTS  #####################
-PARENT_DIRECTORY = os.path.join(os.path.expanduser('~'), "code", "ChrisBell193", "Siesta_Sentry")
-DATA_DIRECTORY = os.path.join(os.path.expanduser('~'), "code", "ChrisBell193", "Siesta_Sentry","raw_data")
+PARENT_DIRECTORY = 'data'
+DATA_DIRECTORY = os.path.join(PARENT_DIRECTORY,"raw_data")
 VIDEO_DIRECTORY = os.path.join(DATA_DIRECTORY, 'video')
 
 CLASSES_NUMS = ['0','5','10']
@@ -18,3 +18,9 @@ TRAIN_SET_RANGE = range(1,43)
 TRAIN_SET_NORMAL = [num for num in TRAIN_SET_RANGE if num not in SPECIAL_GUYS]
 VAL_SET_RANGE = range(43,49)
 NUMBER_OF_FRAMES =20
+
+MODEL_TYPE = "yolov8n.yaml"
+CONFIG_FILE = "drowsiness_detection/config/google_colab_config_augment_1.yaml"
+EPOCHS = 100
+PATIENCE = 50
+BATCH_SIZE = 16
