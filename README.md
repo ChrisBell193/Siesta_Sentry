@@ -38,6 +38,8 @@ drowsiness_detection/
 │   └── video/
 
 └── config/
+│  
+...
 
 Second, download the videos from this [link](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset) and move all of the videos from the different folds into the video directory you just created.
 
