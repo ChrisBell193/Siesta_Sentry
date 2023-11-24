@@ -3,13 +3,10 @@ from ultralytics import YOLO
 import os
 
 def run_prediction():
-    #TODO update this
-    PARENT_DIRECTORY = os.path.join(os.path.expanduser('~'), "code", "ChrisBell193", "Siesta_Sentry")
     model = YOLO(
-    #TODO update this
-                os.path.join(PARENT_DIRECTORY,
-                            'runs',
-                            'should be best fine tuned',
+                os.path.join('data',
+                            'detect',
+                            'train',
                             'weights',
                             'best.pt'
                             )

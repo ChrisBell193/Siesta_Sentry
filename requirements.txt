@@ -2,7 +2,7 @@ uuid
 opencv-python
 Pillow
 ultralytics
-mediapipe
+mediapipe==0.10.3
 pygame
 
 streamlit
@@ -10,7 +10,6 @@ streamlit_webrtc
 torch
 
 torchvision
-opencv-python
 matplotlib
 PyYAML
 requests

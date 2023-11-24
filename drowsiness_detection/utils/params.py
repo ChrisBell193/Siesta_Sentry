@@ -6,10 +6,9 @@ PARENT_DIRECTORY = 'data'
 DATA_DIRECTORY = os.path.join(PARENT_DIRECTORY,"raw_data")
 VIDEO_DIRECTORY = os.path.join(DATA_DIRECTORY, 'video')
 
-CLASSES_NUMS = ['0','5','10']
+CLASSES_NUMS = ['0','10']
 CLASSES_DICT = {
     '0': 'alert',
-    '5': 'normal',
     '10': 'drowsy'
 }
 

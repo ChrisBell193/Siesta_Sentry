@@ -7,11 +7,10 @@ import math
 from typing import Tuple, Union
 import numpy as np
 import matplotlib.pyplot as plt
-import mediapipe as mp
 import cv2
-from mediapipe.python.solutions import vision
+import mediapipe as mp
 from mediapipe.tasks import python
-
+from mediapipe.tasks.python import vision
 
 def _normalized_to_pixel_coordinates(
     normalized_x: float, normalized_y: float, image_width: int,
@@ -95,18 +94,17 @@ def annotate_and_save_labels_file(input_directory, output_labels_directory):
     """
     # Iterate through all files in the input directory
     for file_names in os.listdir(input_directory):
-        for file_name in file_names:
-            if file_name.endswith('.jpg'):
-                # Get the full path to the input image
-                path_image = os.path.join(input_directory, file_name)
+        if file_names.endswith('.jpg'):
+            # Get the full path to the input image
+            path_image = os.path.join(input_directory, file_names)
+            # Initialize face detection
+            mp_face_detect = mp.solutions.face_detection
+            face_detect = mp_face_detect.FaceDetection(min_detection_confidence=.6)
+            img_guy = cv2.imread(path_image)
+            results_lists = face_detect.process(img_guy)
 
-                # Initialize face detection
-                mp_face_detect = mp.solutions.face_detection
-                face_detect = mp_face_detect.FaceDetection(min_detection_confidence=.6)
-                img_guy = cv2.imread(path_image)
-                results_lists = face_detect.process(img_guy)
-
-                # Process the detected faces
+            # Process the detected faces
+            if results_lists.detections is not None:
                 for result_list in results_lists.detections:
                     bbx = result_list.location_data.relative_bounding_box
                     x_center = bbx.xmin + (bbx.width / 2)
@@ -118,18 +116,20 @@ def annotate_and_save_labels_file(input_directory, output_labels_directory):
                     save_path = os.path.join(output_labels_directory)
                     if not os.path.exists(save_path):
                         os.makedirs(save_path)
-                    file_object = open((os.path.join(save_path, f"{file_name.removesuffix('.jpg')}.txt")), "w")
+                    file_object = open((os.path.join(save_path, f"{file_names.removesuffix('.jpg')}.txt")), "w")
 
                     # Write label information based on file name
-                    if file_name.startswith('a'):
+                    if file_names.startswith('a'):
                         file_object.write(f"0 {x_center} {y_center} {width} {height}")
-                    elif file_name.startswith('n'):
+                    elif file_names.startswith('n'):
                         file_object.write(f"1 {x_center} {y_center} {width} {height}")
-                    elif file_name.startswith('d'):
+                    elif file_names.startswith('d'):
                         file_object.write(f"2 {x_center} {y_center} {width} {height}")
                     else:
                         print("this is a mistake")
                     file_object.close()
+            else:
+                print('no faces detected')
 
 def face_dectection_bbx_for_picture(input_folder, output_folder):
     """

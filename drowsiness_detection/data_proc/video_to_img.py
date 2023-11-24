@@ -43,7 +43,7 @@ def extract_equally_spaced_frames(video_path, output_folder, status_id, person_i
             output_path = (os.path.join(output_folder,
                                         status_id
                                         + '_'
-                                        + person_id
+                                        + str(person_id)
                                         + '_'
                                         + str(uuid.uuid1())
                                         + '.jpg')
@@ -69,8 +69,8 @@ def mp4_to_frames(video_range: Tuple, train_or_val: str, num_frames = 50):
         for class_num in CLASSES_NUMS:
             video_path = os.path.join(video_folder, class_num + '.mp4' )
             image_path = os.path.join(DATA_DIRECTORY, f'raw_image_{num_frames}', train_or_val)
-            if not os.path.exist(image_path):
-                os.makedir(image_path)
+            if not os.path.exists(image_path):
+                os.makedirs(image_path)
             extract_equally_spaced_frames(video_path,
                                           image_path,
                                           num_frames=num_frames,
@@ -86,8 +86,8 @@ def mov_to_frames(video_range: list, train_or_val: str, num_frames = 50):
         for class_num in CLASSES_NUMS:
             video_path = os.path.join(video_folder, class_num + '.mov' )
             image_path = os.path.join(DATA_DIRECTORY, f'raw_image_{num_frames}', train_or_val)
-            if not os.path.exist(image_path):
-                os.makedir(image_path)
+            if not os.path.exists(image_path):
+                os.makedirs(image_path)
             extract_equally_spaced_frames(video_path,
                                           image_path,
                                           num_frames=num_frames,
@@ -105,8 +105,8 @@ def m4v_to_frames(video_range: list, train_or_val: str, num_frames = 50):
             image_path = os.path.join(DATA_DIRECTORY,
                                       f'raw_image_{num_frames}',
                                       train_or_val)
-            if not os.path.exist(image_path):
-                os.makedir(image_path)
+            if not os.path.exists(image_path):
+                os.makedirs(image_path)
             extract_equally_spaced_frames(video_path,
                                           image_path,
                                           num_frames=num_frames,
@@ -114,7 +114,7 @@ def m4v_to_frames(video_range: list, train_or_val: str, num_frames = 50):
                                           person_id=person_id)
 
 def video_to_frames(video_range: list, folder: str, num_frames = 20):
-    mp4_to_frames(video_range, num_frames,folder)
-    mov_to_frames(video_range, num_frames,folder)
-    m4v_to_frames(video_range, num_frames,folder)
+    mp4_to_frames(video_range, folder, num_frames)
+    mov_to_frames(video_range, folder, num_frames)
+    m4v_to_frames(video_range, folder, num_frames)
     print(f'Finish getting {num_frames} of video for {folder} set')

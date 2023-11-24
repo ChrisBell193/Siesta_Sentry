@@ -1,11 +1,11 @@
 import uuid   # Unique identifier
 import os
 import time
-import cv2
-from PIL import Image
+# import cv2
+# from PIL import Image
 import math
 from typing import Tuple, Union
-import numpy as np
+# import numpy as np
 import shutil
 from drowsiness_detection.data_proc.image_proc import *
 from drowsiness_detection.data_proc.image_annot import *
@@ -32,11 +32,14 @@ def image_preprocess():
     train_images_processed_path = os.path.join(DATA_DIRECTORY,
                                                'train',
                                                'images')
-    if not os.path.exist(train_images_processed_path):
-        os.makedir(train_images_processed_path)
+    if not os.path.exists(train_images_processed_path):
+        os.makedirs(train_images_processed_path)
 
-    resize_and_fill(input_path = train_images_path,
-                    output_path= train_images_processed_path,
+    for root, dirs, files in os.walk(train_images_path):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            resize_and_fill(input_path = file_path,
+                    output_path= os.path.join(train_images_processed_path, file_name),
                     size=640,
                     fill_color=(0, 0, 0))
     print(f'Finish processing for normal train set')
@@ -51,9 +54,13 @@ def image_preprocess():
     print(f'Image processing...')
     train_23_path = os.path.join(DATA_DIRECTORY,
                                      f'raw_image_{NUMBER_OF_FRAMES}',
-                                     SPECIAL_GUYS[0])
-    crop_to_square(image_path= train_23_path,
-                   output_path= train_images_processed_path,
+                                     str(SPECIAL_GUYS[0]))
+    for root, dirs, files in os.walk(train_23_path):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+
+            crop_to_square(image_path= file_path,
+                   output_path= os.path.join(train_images_processed_path, file_name),
                    target_size=640)
     print(f'Finish processing for person_id {SPECIAL_GUYS[0]}')
 
@@ -67,9 +74,13 @@ def image_preprocess():
     print(f'Image processing...')
     train_42_path = os.path.join(DATA_DIRECTORY,
                                      f'raw_image_{NUMBER_OF_FRAMES}',
-                                     SPECIAL_GUYS[1])
-    shrink_and_add_padding(image_path= train_42_path,
-                           output_path= train_images_processed_path,
+                                     str(SPECIAL_GUYS[1]))
+    for root, dirs, files in os.walk(train_42_path):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+
+            shrink_and_add_padding(image_path= file_path,
+                           output_path= os.path.join(train_images_processed_path, file_name),
                            target_percentage = 0.8)
     print(f'Finish processing for person_id {SPECIAL_GUYS[1]}')
 
@@ -87,11 +98,15 @@ def image_preprocess():
     val_images_processed_path = os.path.join(DATA_DIRECTORY,
                                                'val',
                                                'images')
-    if not os.path.exist(val_images_processed_path):
-        os.makedir(val_images_processed_path)
+    if not os.path.exists(val_images_processed_path):
+        os.makedirs(val_images_processed_path)
 
-    resize_and_fill(input_path = val_images_path,
-                    output_path= val_images_processed_path,
+    for root, dirs, files in os.walk(val_images_path):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+
+            resize_and_fill(input_path = file_path,
+                    output_path= os.path.join(val_images_processed_path, file_name),
                     size=640,
                     fill_color=(0, 0, 0))
     print('Finish processing for validation set')
@@ -117,19 +132,23 @@ def image_annotate():
                                 )
 
     #STEP 1: Annotate train folder
+    if not os.path.exists(train_labels_path):
+        os.makedirs(train_labels_path)
+
     print('Saving label files for train set')
     annotate_and_save_labels_file(input_directory= train_images_path,
                                   output_labels_directory= train_labels_path)
 
-    #STEP 1: Annotate validation folder
+    #STEP 2: Annotate validation folder
+    if not os.path.exists(val_labels_path):
+        os.makedirs(val_labels_path)
+
     print('Saving label files for val set')
     annotate_and_save_labels_file(input_directory= val_images_path,
                                   output_labels_directory= val_labels_path)
 
     print('Finish annotating pictures, label files are saved')
 
-
-#TODO find out where model is saved, use that path in predict
 
 #Calling all functions in order
 
