@@ -62,7 +62,7 @@ python main.py
 ```
 
 Note: locally you will need a camera on source[0] that is accessible by OpenCV.  
->>>>>>> 3620315d1ca4af6e8e6ed2cb669b279838b1fee8
+
 
 ## Acknowledgements
 University of Texas at Arlington [Drowsiness Dataset](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset)
