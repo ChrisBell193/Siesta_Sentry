@@ -29,21 +29,23 @@ Siesta Sentry can now effectively detect drowsy faces in a live video feed.
 ### Setup
 Follow the steps below to run everything locally!
 
-First, clone the repository and then create a new directory called data within the drowsiness_detection directory. Within that folder, create a directory called video. Structure should look like this:
+First, clone the repository and then create a new directory called data within the drowsiness_detection directory. Within that folder, create a directory called raw data, and within that directory another called video. Structure should look like this:
 
 ____________________________
 drowsiness_detection/
 
 ├── data/
 
-│   └── video/
+│   └── raw_data/
+
+│      └── video/
 
 └── config/
 
 │  
 ...
 
-Second, download the videos from this [link](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset) and move all of the videos from the different folds into the video directory you just created.
+Second, download the videos from this [link](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset) and move all of the folders containing the videos from the different folds into the video directory you just created, such that your video directory has folders numbered from 1 to 48. each containing 3 video files. 
 
 Third, install the requirements:
 ```
