@@ -31,6 +31,7 @@ Follow the steps below to run everything locally!
 
 First, clone the repository and then create a new directory called data within the drowsiness_detection directory. Within that folder, create a directory called video. Structure should look like this:
 
+
 drowsiness_detection/
 
 ├── data/
