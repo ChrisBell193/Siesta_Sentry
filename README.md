@@ -32,8 +32,11 @@ Follow the steps below to run everything locally!
 First, clone the repository and then create a new directory called data within the drowsiness_detection directory. Within that folder, create a directory called video. Structure should look like this:
 
 drowsiness_detection/
+
 ├── data/
+
 │   └── video/
+
 └── config/
 
 Second, download the videos from this [link](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset) and move all of the videos from the different folds into the video directory you just created.
