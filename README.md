@@ -38,7 +38,7 @@ drowsiness_detection/
 
 │   └── raw_data/
 
-│      └── video/
+│   ---   └── video/
 
 └── config/
 
