@@ -38,10 +38,17 @@ drowsiness_detection/
 │   └── raw_data/
 │       └── video/
 └── config/
+<<<<<<< HEAD
 │
 ...
 </pre>
 Second, download the videos from this [link](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset) and move all of the folders containing the videos from the different folds into the video directory you just created, such that your video directory has folders numbered from 1 to 48. each containing 3 video files.
+=======
+│  
+...
+</pre>
+Second, download the videos from this [link](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset) and move all of the folders containing the videos from the different folds into the video directory you just created, such that your video directory has folders numbered from 1 to 48. each containing 3 video files. 
+>>>>>>> 3620315d1ca4af6e8e6ed2cb669b279838b1fee8
 
 Third, install the requirements:
 ```
@@ -60,7 +67,11 @@ Lastly, in your commandline, run:
 python main.py
 ```
 
+<<<<<<< HEAD
 Note: locally you will need a camera on source[0] that is accessible by OpenCV.
+=======
+Note: locally you will need a camera on source[0] that is accessible by OpenCV.  
+>>>>>>> 3620315d1ca4af6e8e6ed2cb669b279838b1fee8
 
 ## Acknowledgements
 University of Texas at Arlington [Drowsiness Dataset](https://www.kaggle.com/datasets/rishab260/uta-reallife-drowsiness-dataset)
