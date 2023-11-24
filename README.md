@@ -48,6 +48,13 @@ Third, install the requirements:
 pip install -r requirements.txt
 ```
 
+Next, you will need to go to the home/<user>/.config/Ultralytics directory and open settings.yaml and change the following three lines to read as follows, replacing <path/to> with the path to your Siesta_Sentry directory:
+```
+datasets_dir: /home/path/to/Siesta_Sentry
+weights_dir: //home/path/to/Siesta_Sentry/data
+runs_dir: /home/path/to/Siesta_Sentry/data
+```
+
 Lastly, in your commandline, run:
 ```
 python main.py
